@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #4CAF50;
+            max-width: 600px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .hidden-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .hidden-link:hover {
+            color: #0000FF;
+        }
+
+        .not-found {
+            color: #FF0000; /* Red color for the 404 message */
+            font-size: 3em;
+        }
+
+        .riddle {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Password Input Section -->
+    <div id="passwordSection">
+        <h1>Enter Password</h1>
+        <input type="password" id="password" placeholder="Enter 4-digit password" maxlength="4">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="message" style="color:red;"></p>
+    </div>
+
+    <!-- Congratulations Section -->
+    <div id="congratsSection" class="hidden">
+        <h1>Congratulations! You did so<a href="#" class="hidden-link" onclick="showNotFound(); return false;">m</a>ething.
+            To find what you seek, look closely, they say,
+            For a letter stands out in a subtle way.
+            It’s hidden in plain sight, as part of the plan,
+            A single click on it reveals where you can scan.
+        </h1>
+    </div>
+
+    <!-- 404 Not Found Section -->
+    <div id="notFoundSection" class="hidden">
+        <h1 class="not-found">404</h1>
+        <p>Page Not Found</p>
+        <div class="riddle">
+            <p>To find the way, think of the sun,</p>
+            <p>It rises in the east, a new day begun.</p>
+            <p>Click the <a href="#" class="hidden-link" onclick="showSecretPage(); return false;">first</a> letter of where it shines,</p>
+            <p>And you may just uncover what you hope to find.</p>
+        </div>
+    </div>
+
+    <!-- Secret Page Section -->
+    <div id="secretPageSection" class="hidden">
+        <h1>Welcome to the Secret Page!</h1>
+        <p>This is the page you were trying to reach!</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === '1234') { // Change '1234' to your desired password
+                document.getElementById('passwordSection').classList.add('hidden');
+                document.getElementById('congratsSection').classList.remove('hidden');
+            } else {
+                document.getElementById('message').innerText = 'Incorrect password. Try again.';
+            }
+        }
+
+        function showNotFound() {
+            document.getElementById('congratsSection').classList.add('hidden');
+            document.getElementById('notFoundSection').classList.remove('hidden');
+        }
+
+        function showSecretPage() {
+            document.getElementById('notFoundSection').classList.add('hidden');
+            document.getElementById('secretPageSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
